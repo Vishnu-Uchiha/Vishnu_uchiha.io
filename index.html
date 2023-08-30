@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishnu Uchiha</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    overflow: hidden;
+  }
+
+  header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .button {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: #555;
+  }
+
+  .resume-section {
+    margin-top: 2rem;
+  }
+
+  .resume-item {
+    margin-bottom: 1rem;
+  }
+
+  .folded {
+    transform: perspective(2000px) rotateX(30deg);
+    transform-origin: top;
+    transition: transform 1s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  #content {
+    position: relative;
+    z-index: 2;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+</head>
+<body>
+<header>
+  <h1>Vishnu Uchiha</h1>
+</header>
+<div class="container">
+  <h2>About Me</h2>
+  <p>I'm a passionate coder and developer with a love for programming languages and problem-solving.</p>
+  <button class="button" id="seeProjects">See Projects</button>
+
+  <div class="resume-section">
+    <h2>Resume</h2>
+    <div class="resume-item">
+      <h3>Name</h3>
+      <p>Vishnu Uchiha</p>
+    </div>
+    <div class="resume-item">
+      <h3>Educational Qualification</h3>
+      <p>BE Computer Science and Engineering</p>
+    </div>
+    <div class="resume-item">
+      <h3>Known Programming Languages</h3>
+      <p>Python, C, Bash</p>
+    </div>
+  </div>
+</div>
+<div id="content">
+  <!-- Your project content goes here -->
+</div>
+<script>
+  const container = document.querySelector(".container");
+  const seeProjectsButton = document.getElementById("seeProjects");
+  
+  seeProjectsButton.addEventListener("click", () => {
+    gsap.to(container, { rotationX: 180, duration: 1, transformOrigin: "top", onComplete: () => {
+      container.style.display = "none";
+    }});
+  });
+</script>
+</body>
+</html>
