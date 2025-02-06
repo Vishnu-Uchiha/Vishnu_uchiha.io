@@ -97,7 +97,7 @@
 </div>
 <script>
   const container = document.querySelector(".container");
-  const seeProjectsButton = document.getElementById("seeProjects");
+  const seeProjects Button = document.getElementById("seeProjects");
   
   seeProjectsButton.addEventListener("click", () => {
     gsap.to(container, { rotationX: 180, duration: 1, transformOrigin: "top", onComplete: () => {
@@ -107,3 +107,23 @@
 </script>
 </body>
 </html>
+
+
+
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from base64 import b64encode, b64decode
+import os
+
+def encrypt(key, plaintext):
+    iv = os.urandom(16)
+    cipher = Cipher(algorithms.AES(key), modes.CFB(iv)).encryptor()
+    return b64encode(iv).decode(), b64encode(cipher.update(plaintext) + cipher.finalize()).decode()
+
+def decrypt(key, iv, ciphertext):
+    cipher = Cipher(algorithms.AES(key), modes.CFB(b64decode(iv))).decryptor()
+    return cipher.update(b64decode(ciphertext)) + cipher.finalize()
+
+key = os.urandom(16)
+iv, ciphertext = encrypt(key, b"Hello, symmetric encryption!")
+print("IV:", iv, "\nCiphertext:", ciphertext)
+print("Decrypted:", decrypt(key, iv, ciphertext).decode())
